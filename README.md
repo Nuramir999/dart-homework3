@@ -271,3 +271,63 @@
   //}
   //print('Итоговая стоимость с учётом скидки: $finalCartPrice сом');
 //}
+
+
+
+
+//dart-game
+void main() {
+    print ('Мини Арена');
+    
+    // In DartPad, we simulate the name input
+    String name = 'Beka';
+    print('Имя игрока: $name');
+
+    int health = 100;
+    int attack = 20;
+    int potions = 2;
+    int defeated = 0;
+ 
+    
+    print ('\nГерой: $name');
+    print ('Здоровье: $health');
+    print ('Атака: $attack');
+    print ('Зелья: $potions');
+
+    List<String> enemies = ['Слизень', 'Скелет', 'Дракон'];
+    List<int> enemyHealth = [30, 40, 50];
+    List<int> enemyAttack = [10, 15, 20];
+
+    for (int i = 0; i < enemies.length; i++) {
+        print ('\n== ${enemies[i]} ==');
+
+        while (health > 0 && enemyHealth[i] > 0) {
+            print('\nВаше здоровье: $health');
+            print('Здоровье противника: ${enemyHealth[i]}');
+            print ('Зелья: $potions');
+            
+            // Simulating an aggressive strategy (always attack) 
+            // since stdin is not available in DartPad
+            print ('Авто-атака против ${enemies[i]}');
+            
+            enemyHealth[i] -= attack;
+            print('Вы нанесли $attack урон');
+            
+            if (enemyHealth[i] > 0) {
+                health -= enemyAttack[i];
+                print('Противник атаковал, ваше здоровье: $health');
+            }
+
+            if (health <= 0) {
+                print('\nИгра окончена');
+                return;
+            }
+        }
+        
+        if (health > 0) {
+            print('\nВы победили: ${enemies[i]}');
+            defeated++;
+        }
+    }
+    print('\nПоздравляем! Вы прошли арену. Всего повержено врагов: $defeated');
+}
